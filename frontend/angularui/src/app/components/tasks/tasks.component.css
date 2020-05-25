@@ -1,5 +1,11 @@
+.container {
+  width: 125%;
+  height: 300px;
+}
 
-container{
-    width: 100%;
-    height: 225px;
-    }
+#item {
+  flex-grow: 1 1 0;
+  text-align: center;
+  border: 1px solid black;
+}
+

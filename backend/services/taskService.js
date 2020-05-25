@@ -6,7 +6,7 @@ var user = require('./userService')
 
 
 
-router.post('/add', (request, response) => {
+router.post('/add', user.checkAuthenticated, (request, response) => {
     var taskData = request.body
     var task = new Task(taskData)
     task.save((error, result) => {
@@ -14,7 +14,7 @@ router.post('/add', (request, response) => {
             console.log(error)
             return response.sendStatus(500).send({ message: error })
         }
-        return response.sendStatus(201)
+        return response.status(201).send({ message: 'success' })
     })
 })
 

@@ -33,6 +33,40 @@ export class TaskService {
 
   }
 
+  addTask(task: Task) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpService.post<Task>(this.path + 'task/add', task, httpOptions).pipe(
+      tap(data => this.alertifyService.success(data['message'])),
+
+      catchError(err => {
+        this.alertifyService.error(err.error.message);
+        return this.handleError(err);
+      })
+
+    );
+  }
+
+  addSubTask(task: Task, taskId: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpService.post<Task>(this.path + 'task/addSubTask/' + taskId, task, httpOptions).pipe(
+      tap(data => this.alertifyService.success('başarılı')),
+
+      catchError(err => {
+        this.alertifyService.error(err.error.message);
+        return this.handleError(err);
+      })
+
+    );
+  }
+
 
   getTaskById(taskId: number): Observable<Task> {
     const httpOptions = {

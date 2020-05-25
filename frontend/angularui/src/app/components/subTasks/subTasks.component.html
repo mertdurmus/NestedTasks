@@ -8,7 +8,21 @@
             {{ task.description }}
           </p>
 
+          <div class="btn-group">
+            <button type="button" routerLink="/taskDetail/{{task.id}}" class="btn btn-sm btn-outline-secondary">
+              View
+            </button>
+            <button type="button"   routerLink="/subTaskDetail/{{task.id}}"  class="btn btn-sm btn-outline-secondary">
+              getSubTask
+            </button>
+            <button type="button"  routerLink="/addSubTask/{{task.id}}"  class="btn btn-sm btn-outline-secondary">
+              addSubTask
+            </button>
+          </div>
+
           <small class="text-muted"> task id: {{ task.id }}</small>
+
+
         </div>
       </div>
     </div>

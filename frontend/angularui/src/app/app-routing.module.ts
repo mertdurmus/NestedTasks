@@ -6,6 +6,8 @@ import { TaskDetailComponent } from './components/taskDetail/taskDetail.componen
 import { RegisterComponent } from './components/register/register.component';
 import { RouteGuardService } from './services/RouteGuard.service';
 import { SubTasksComponent } from './components/subTasks/subTasks.component';
+import { AddTaskComponent } from './components/addTask/addTask.component';
+import { AddNewTaskComponent } from './components/addNewTask/addNewTask.component';
 
 const routes: Routes = [
   {path: 'main', component: MainComponent},
@@ -13,6 +15,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent },
   { path: 'taskDetail/:taskId', component: TaskDetailComponent,  canActivate: [RouteGuardService]},
   { path: 'subTaskDetail/:taskId', component: SubTasksComponent,  canActivate: [RouteGuardService]},
+  { path: 'addSubTask/:taskId', component: AddTaskComponent,  canActivate: [RouteGuardService]},
+  { path: 'addNewTask', component: AddNewTaskComponent,  canActivate: [RouteGuardService]},
   {path: '**', redirectTo: 'main', pathMatch: 'full'},
 ];
 

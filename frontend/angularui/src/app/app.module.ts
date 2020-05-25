@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './services/authInterceptor.service';
 import { RouteGuardService } from './services/RouteGuard.service';
 import { SubTasksComponent } from './components/subTasks/subTasks.component';
+import { AddTaskComponent } from './components/addTask/addTask.component';
+import { AddNewTaskComponent } from './components/addNewTask/addNewTask.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { SubTasksComponent } from './components/subTasks/subTasks.component';
     TasksComponent,
     TaskDetailComponent,
     RegisterComponent,
-    SubTasksComponent
+    SubTasksComponent,
+    AddTaskComponent,
+    AddNewTaskComponent
   ],
   imports: [
     BrowserModule,

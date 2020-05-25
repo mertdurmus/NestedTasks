@@ -1,0 +1,30 @@
+
+<form class="form-group" (ngSubmit)="get()">
+
+
+  <div class="text-center mb-4">
+
+    <h1 class="h3 mb-3 font-weight-normal">add task</h1>
+  
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" [(ngModel)] = "task.name" name="name" class="form-control" placeholder="task name" required autofocus>
+    <label for="name">task name</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="text"  [(ngModel)] = "task.description" name="description" class="form-control" placeholder="task description" required autofocus>
+    <label for="description">task description</label>
+
+  </div>
+
+  <div class="form-label-group">
+    <input type="text"   [(ngModel)] = "task.id"  name="id" class="form-control" placeholder="id" required autofocus >
+    <label for="id">task id</label>
+    
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; 2020-2021</p>
+</form>

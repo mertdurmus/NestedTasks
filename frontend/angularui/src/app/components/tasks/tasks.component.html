@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div *ngFor="let task of tasks" class="col-md-4">
-      <div  class="card mb-4 box-shadow mt-4 pt-3">
+      <div id="item" class="card mb-4 box-shadow mt-4 pt-3">
         <div  class="card-body">
           <h2 >{{ task.name }}</h2>
           <p class="card-text">
@@ -15,8 +15,14 @@
               <button type="button"   routerLink="/subTaskDetail/{{task.id}}"  class="btn btn-sm btn-outline-secondary">
                 getSubTask
               </button>
+              <button type="button"  routerLink="/addSubTask/{{task.id}}"  class="btn btn-sm btn-outline-secondary">
+                addSubTask
+              </button>
             </div>
-            <small class="text-muted"> task id: {{ task.id }}</small>
+            <p class="card-text">
+              <small class="text-muted"> task id: {{ task.id }}</small>
+            </p>
+            
           </div>
         </div>
       </div>
