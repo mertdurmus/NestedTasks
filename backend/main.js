@@ -2,13 +2,35 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var async = require('async')
-
+var cors = require('cors')
 var Task = require('./models/task')
+var User = require('./models/user')
+
 var task = require('./services/taskService')
+var user = require('./services/userService')
+
+
+
+
+
+const corsOptions = {
+    origin: ["http://localhost:4200"],
+    credentials: true,
+    methods: "POST, PUT, OPTIONS, DELETE, GET",
+    allowedHeaders: "X-Requested-With, Content-Type, authorization"
+}
+
 
 
 var app = express()
 app.use(bodyParser.json())
+
+
+app.use(cors(corsOptions))
+app.options('*', cors(corsOptions));
+
+
+
 
 mongoose.connect('mongodb://localhost:27017/task',
     {
@@ -24,8 +46,9 @@ mongoose.connect('mongodb://localhost:27017/task',
         }
     });
 
-app.use('/task', task.router)
 
+app.use('/task', task.router)
+app.use('/user', user.router)
 
 
 app.listen(7200)

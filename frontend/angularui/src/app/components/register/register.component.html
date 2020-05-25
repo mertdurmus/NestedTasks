@@ -1,0 +1,30 @@
+
+
+<form class="form-group" (ngSubmit)="register(registerUser)">
+
+
+  <div class="text-center mb-4">
+    <img class="mb-4" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRjGhwL7kWvVY2sXrjl_dikT5XXjXB7Gmjn_cKwSyEhJShlGZSB&usqp=CAU" alt="" width="72" height="72">
+
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+  
+  </div>
+
+  <div class="form-label-group">
+    <input type="text" [(ngModel)] = "registerUser.name" name="name" class="form-control" placeholder="name" required autofocus>
+    <label for="name">name</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="email"  [(ngModel)] = "registerUser.email" name="email" class="form-control" placeholder="Email address" required autofocus>
+    <label for="email">Email address</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="password"   [(ngModel)] = "registerUser.password"  name="password" class="form-control" placeholder="Password" required autofocus >
+    <label for="password">Password</label>
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; 2020-2021</p>
+</form>

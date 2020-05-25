@@ -1,6 +1,7 @@
 var express = require('express')
 var Task = require('../models/task')
 var router = express.Router()
+var user = require('./userService')
 
 
 
@@ -32,7 +33,7 @@ router.post('/addSubTask/:parentId', async (request, response) => {
     response.send(task)
 })
 
-router.get('/getTasks', async (request, response) => {
+router.get('/getTasks', user.checkAuthenticated , async (request, response) => {
     var Tasks = await Task.find({}, '-__v -_id')
     response.send(Tasks)
 })
