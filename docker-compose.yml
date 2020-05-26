@@ -1,0 +1,26 @@
+version: '3' # specify docker-compose version
+
+#we have 3 services 
+#server, client and db
+services:
+ client:
+   hostname: "localhost"
+   build: ./frontend/angularui # specify the directory of the Dockerfile
+   ports:
+     - "4200:80"
+ server: 
+   build: ./backend # specify the directory of the Dockerfile
+   ports:
+     - "7200:7200"
+   environment:
+     - MONGO_URL=mongodb://database/task
+   links:
+     - database
+   depends_on:
+     - database
+ database:
+   image: mongo # specify image to build container from
+   volumes:
+     - "/data/db:/data/db"
+   ports:
+     - "27017:27017" # specify port forewarding
