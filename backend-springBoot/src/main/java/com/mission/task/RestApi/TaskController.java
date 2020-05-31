@@ -30,15 +30,29 @@ public class TaskController {
 	
 	@PostMapping("/add")
 	public void add(@RequestBody Task task) {
+		this.taskService.add(task);		
+	}
+	
+	@PostMapping("/addChild/{id}")
+	public void addChild(@RequestBody Task task, @PathVariable int id) {
+		
 		this.taskService.add(task);
+		this.taskService.addChildren(task, id);
 		
 	}
+	
 	@PostMapping("/update")
 	public void update(@RequestBody  Task task) {
 		this.taskService.update(task);
 	}
 	@PostMapping("/delete")
 	public void delete(@RequestBody Task task) {
+		this.taskService.delete(task);
+	}
+	
+	@GetMapping("/delete/{id}")
+	public void deleteById(@PathVariable int id) {
+		Task task = this.taskService.getById(id);
 		this.taskService.delete(task);
 	}
 	

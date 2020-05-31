@@ -47,4 +47,12 @@ public class TaskManager implements ITaskService {
 		return this.iTaskDal.getById(id);
 	}
 
+	@Override
+	public void addChildren(Task task, int id) {
+		this.iTaskDal.addChildren(task, id);
+		
+	}
+	
+	
+
 }

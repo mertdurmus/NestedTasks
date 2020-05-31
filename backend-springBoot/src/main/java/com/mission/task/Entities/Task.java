@@ -6,6 +6,11 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -25,24 +30,25 @@ public class Task {
 	@Column(name="description")
 	private String description;
 	
-	@Transient
-	private Long parentId;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional=true)
-	@JoinColumn(name="parent_id")
+	@OneToOne( cascade = { CascadeType.ALL } )
+	@JoinColumn(name = "parent_id")
+	@NotFound(action = NotFoundAction.IGNORE)
 	private Task parent;
 
-	@OneToMany(mappedBy="parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval=true)
+	
+	@OneToMany(mappedBy = "parent")
+	@JsonIgnore
 	private Set<Task> children = new HashSet<Task>();
 
 	
-	
-	public Task(int id, String name, String description, Long parentId, Task parent, Set<Task> children) {
-		super();
+
+
+
+	public Task(int id, String name, String description, Task parent, Set<Task> children) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.parentId = parentId;
 		this.parent = parent;
 		this.children = children;
 	}
@@ -90,15 +96,14 @@ public class Task {
 	}
 
 
-
-	public Long getParentId() {
-		return parentId;
+	public Set<Task> getChildren() {
+		return children;
 	}
 
 
 
-	public void setParentId(Long parentId) {
-		this.parentId = parentId;
+	public void setChildren(Set<Task> taskChild) {
+		this.children =  taskChild;
 	}
 
 
@@ -114,23 +119,9 @@ public class Task {
 	}
 
 
-
-	public Set<Task> getChildren() {
-		return children;
-	}
-
-
-
-	public void setChildren(Set<Task> children) {
-		this.children = children;
-	}
-
-	
-	
-
-	
-	
-	
-	
+    public void addChild(Task children) {
+        this.children.add(children);
+    }
+		
 
 }

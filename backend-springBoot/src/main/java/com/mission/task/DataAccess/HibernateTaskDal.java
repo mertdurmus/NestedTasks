@@ -58,4 +58,16 @@ public class HibernateTaskDal implements ITaskDal {
 		return task;
 	}
 
+	@Override
+	@Transactional
+	public void addChildren(Task taskChild, int id) {
+		Session session = entityManager.unwrap(Session.class);
+		Task task = session.get(Task.class, id);
+		task.addChild(taskChild);	
+		taskChild.setParent(task);
+		session.saveOrUpdate(task);
+		session.saveOrUpdate(taskChild);
+		
+	}
+
 }

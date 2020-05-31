@@ -10,5 +10,6 @@ public interface ITaskDal {
 	void update(Task task);
 	void delete(Task task);
 	Task getById(int id);
+	void addChildren(Task task, int id);
 
 }
